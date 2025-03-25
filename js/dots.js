@@ -10,6 +10,7 @@ const canvas = document.querySelector("#myCanvas");
     resizeCanvas();
 
     const DOT_COUNT = 30;
+    const COUNTDOWN = 0;
     const RADIUS = 2;
     let dots = [];
     const DIST_MAX = 50;
@@ -67,8 +68,8 @@ const canvas = document.querySelector("#myCanvas");
                     dots[j].dx -= (Math.cos(angle)/2) * (1 - distance/DIST_MAX) * GRAVITY;
                     dots[j].dy -= (Math.sin(angle)/2) * (1 - distance/DIST_MAX) * GRAVITY;
                     
-
-                    for (let k = j+1; k<dots.length; k++){
+                    
+                    for (let k = j+1; k<dots.length; k++){  
                         const k_i_dist = Math.sqrt((dots[k].x-dots[i].x)**2 + (dots[k].y-dots[i].y)**2);
                         const k_j_dist = Math.sqrt((dots[k].x-dots[j].x)**2 + (dots[k].y-dots[j].y)**2);
                         if (k_i_dist < DIST_MAX && k_j_dist < DIST_MAX){
@@ -84,7 +85,7 @@ const canvas = document.querySelector("#myCanvas");
                             ctx.fill();
                         }
                     }
-                        
+                    
                 }
             }
         }
@@ -93,12 +94,13 @@ const canvas = document.querySelector("#myCanvas");
     for (let i = 0; i<DOT_COUNT; i++){
             dots.push(new Dot());
         }
+
+
     
     function animate(){
         //clear the prior screen
         ctx.fillStyle = "turquoise";
-        ctx.fillRect (0,0,canvas.width,canvas.height)
-
+        ctx.fillRect (0,0,canvas.width,canvas.height);
         //Update and draw each dot
         dots.forEach(dot => {
             dot.update();
